@@ -71,7 +71,7 @@ export const VerticalConfig: VerticalProps[] = [
   },
   {
     label: "Specialty",
-    verticalKey: "specialty",
+    verticalKey: "taxonomy_specialty",
     pageType: "grid-cols-3",
     cardType: Speciality,
     universalLimit: 3,

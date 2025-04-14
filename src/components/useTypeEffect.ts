@@ -36,7 +36,7 @@ export const useTypingEffect = () => {
   };
 
   const fetchUnivPrompts = async () => {
-    const url = `https://cdn.yextapis.com/v2/accounts/me/search/autocomplete?v=20190101&api_key=${import.meta.env.YEXT_PUBLIC_SEARCH_API_KEY}&sessionTrackingEnabled=false&experienceKey=${import.meta.env.YEXT_PUBLIC_SEARCH_EXP_KEY}&input=`;
+    const url = `https://sbx-cdn.yextapis.com/v2/accounts/me/search/autocomplete?v=20190101&api_key=${import.meta.env.YEXT_PUBLIC_SEARCH_API_KEY}&sessionTrackingEnabled=false&experienceKey=${import.meta.env.YEXT_PUBLIC_SEARCH_EXP_KEY}&input=`;
 
     try {
       const res = await fetch(url);
