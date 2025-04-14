@@ -283,7 +283,7 @@ const Specialty: Template<TemplateRenderProps> = ({ document }) => {
       {taxonomy_relatedConditions.map((condition: any, index: number) => (
         <a
           key={index}
-          href={`/conditions/${condition.slug}`}
+          href={`/${condition.slug}`}
           className="text-gray-700 font-medium border-b-2 border-green-600 w-fit hover:opacity-80 transition duration-200"
         >
           {condition.name}
