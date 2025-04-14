@@ -80,7 +80,7 @@ export const config: TemplateConfig = {
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug
-    ? `specialty/${document.slug}`
+    ? document.slug
     : `${document.locale}/${document.address.region}/${document.address.city}/${document.address.line1}-${document.id.toString()}`;
 };
 
