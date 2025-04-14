@@ -78,7 +78,7 @@ export const config: TemplateConfig = {
 }
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-    return `consitions/${document.slug || document.id}`;
+    return `${document.slug || document.id}`;
 };
 
 
