@@ -21,7 +21,7 @@ const Speciality = ({ result }: CardProps<any>) => {
     <article id={`${id}`} className={`  group border rounded-lg flex flex-col h-full `}>
       <header className={`relative flex flex-col justify-between`}>
         <a
-          href={landingPageUrl}
+          href={`/${slug}`}
           className={`aspect-square block overflow-hidden rounded-t-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 `}
         >
           {primaryPhoto && (
@@ -29,7 +29,7 @@ const Speciality = ({ result }: CardProps<any>) => {
           )}
         </a>
         <h2 className=" text-lg font-bold px-4 mt-4 ">
-          <a href={landingPageUrl}>{name}</a>
+        <a href={`/${slug}`}>{name}</a>
         </h2>
       </header>
 
