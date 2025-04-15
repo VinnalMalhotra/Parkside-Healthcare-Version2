@@ -78,9 +78,8 @@ const ProfessionalLocation = ({ result }: CardProps<any>) => {
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`group border ${[pageType, _type].includes("map") && `flex flex-col md:flex-row gap-2`}  ${
-        hoveredId === id ? "bg-gray-200" : ""
-      }`}
+      className={`group border ${[pageType, _type].includes("map") && `flex flex-col md:flex-row gap-2`}  ${hoveredId === id ? "bg-gray-200" : ""
+        }`}
     >
       <header className={`relative flex flex-col`}>
         <a
@@ -142,32 +141,27 @@ const ProfessionalLocation = ({ result }: CardProps<any>) => {
         </section>
 
         {pageType && (
-          <footer
-            className={`flex gap-2 justify-center  py-4 items-center uppercase ${
-              ["map", "grid"].some((type) => pageType.includes(type))
-                ? `flex-col md:flex-row !justify-start ${pageType === "map" && `py-4 md:py-0`}`
-                : (!pageType || pageType === "universal") && _type === "map"
-                  ? "flex-col"
-                  : "flex-col md:flex-row"
-            }`}
-          >
-            <Cta
-              ctaType="primaryCta"
-              cta={{ label: "Book appointment", linkType: "URL", link: "" }}
-              hours={hours}
-              name={name}
-              isBookAnAppointment={true}
-              otherStyles="p-2  md:text-base border-2 md:text-sm"
-            />
-            {c_secondaryCTA && (
+          <footer className="flex justify-center items-center gap-4 py-4 uppercase">
+            <div className="flex flex-row flex-wrap justify-center gap-4 w-full md:w-auto max-w-full">
               <Cta
-                cta={c_secondaryCTA}
-                ctaType="secondaryCta"
-                otherStyles="p-2  md:text-base border-2 md:text-sm"
+                ctaType="primaryCta"
+                cta={{ label: "Book appointment", linkType: "URL", link: "" }}
+                hours={hours}
+                name={name}
+                isBookAnAppointment={true}
+                otherStyles="cta-button fixed-width"
               />
-            )}
+                {c_secondaryCTA && (
+                  <Cta
+                    cta={c_secondaryCTA}
+                    ctaType="secondaryCta"
+                    otherStyles="cta-button w-[14em]"
+                  />
+                )}
+            </div>
           </footer>
         )}
+
       </section>
     </article>
   );
