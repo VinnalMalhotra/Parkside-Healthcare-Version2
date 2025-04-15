@@ -70,6 +70,9 @@ export const config: TemplateConfig = {
       "certifications",
       "yextDisplayCoordinate",
       "specialities",
+      "conditionsTreated",
+      "services",
+      "educationList",
       "hours",
       "c_relatedPromo.id",
       "c_relatedPromo.name",
@@ -105,9 +108,8 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug
     ? document.slug
-    : `${document.locale}/${document.address.region}/${document.address.city}/${
-        document.address.line1
-      }-${document.id.toString()}`;
+    : `${document.locale}/${document.address.region}/${document.address.city}/${document.address.line1
+    }-${document.id.toString()}`;
 };
 
 /**
@@ -158,7 +160,7 @@ const Professional: Template<TemplateRenderProps> = ({
     slug,
     c_primaryCTA,
     c_relatedBlogs,
-    c_educationDetails,
+    educationList,
     c_professionalRecord,
     emails,
     headshot,
@@ -167,6 +169,8 @@ const Professional: Template<TemplateRenderProps> = ({
     languages,
     certifications,
     specialities,
+    conditionsTreated,
+    services,
     yextDisplayCoordinate,
     hours,
     id,
@@ -193,6 +197,7 @@ const Professional: Template<TemplateRenderProps> = ({
 
   const email =
     (emails && emails.length >= 1 && emails[0]) || `contact@contact.com`;
+
 
   return (
     <PageLayout _site={_site} templateData={{ __meta, document }}>
@@ -229,20 +234,63 @@ const Professional: Template<TemplateRenderProps> = ({
           <h2 className="text-2xl md:text-4xl font-bold text-center">
             Professional Details
           </h2>
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0">
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Column 1 */}
             <article className="flex flex-col gap-4">
               <section className="flex flex-col gap-1">
                 <h3 className="text-xl font-bold">Experience</h3>
                 <p className="text-tertiary">{yearsOfExperience} Years</p>
               </section>
-              {c_educationDetails && (
+
+              {educationList.map((item: any, index: number) => {
+                return (
+                  <div key={index} className="space-y-1">
+                    <div className="text-base font-semibold">
+                      {item.type.includes('_') ? item.type.split('_').join(' / ') : item.type}
+                    </div>
+                    <div className="text-sm text-gray-700">
+                      {item.institutionName} {item.yearCompleted && `– ${item.yearCompleted}`}
+                    </div>
+                  </div>
+                );
+              })}
+
+
+
+            </article>
+
+            {/* Column 2 */}
+            <article className="flex flex-col gap-4">
+              {services && (
                 <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">Education Details</h3>
+                  <h3 className="text-xl font-bold">Specialities</h3>
                   <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                    {c_educationDetails.map((item: any, index: number) => (
-                      <li key={index}>
-                        {item.degree} - {item.university}, {item.year}
-                      </li>
+                    {services.map((item: string[], index: number) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+              {conditionsTreated && (
+                <section className="flex flex-col gap-1">
+                  <h3 className="text-xl font-bold">Condition Treated</h3>
+                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                    {conditionsTreated.map((item: string[], index: number) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+            </article>
+
+            {/* Column 3 */}
+            <article className="flex flex-col gap-4">
+              {certifications && (
+                <section className="flex flex-col gap-1">
+                  <h3 className="text-xl font-bold">Licenses and Certifications</h3>
+                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                    {certifications.map((item: string[], index: number) => (
+                      <li key={index}>{item}</li>
                     ))}
                   </ul>
                 </section>
@@ -258,30 +306,7 @@ const Professional: Template<TemplateRenderProps> = ({
                 </section>
               )}
             </article>
-            <article className="flex flex-col gap-4">
-              {certifications && (
-                <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">
-                    Licenses and Certifications
-                  </h3>
-                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                    {certifications.map((item: string[], index: number) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-              {specialities && (
-                <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">Specialities</h3>
-                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                    {specialities.map((item: string[], index: number) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-            </article>
+
             {/* <article className="flex flex-col gap-4">
               <h3 className="text-xl font-bold">Professional Journey</h3>
               <ul className="list-disc pl-4 marker:text-secondary space-y-2">
@@ -363,13 +388,13 @@ const Professional: Template<TemplateRenderProps> = ({
         </section>
       </section>
       <section className="bg-accent">
-{   c_relatedProducts &&
-     <ThreeGridLayout
-          titleAlignment="center"
-          title={`Speciality`}
-          relatedItems={c_relatedProducts}
-          ctaCount={1}
-        />}
+        {c_relatedProducts &&
+          <ThreeGridLayout
+            titleAlignment="center"
+            title={`Speciality`}
+            relatedItems={c_relatedProducts}
+            ctaCount={1}
+          />}
       </section>
       <section className="centered-container md:space-y-16">
         <header className=" space-y-2 text-center">
@@ -385,20 +410,20 @@ const Professional: Template<TemplateRenderProps> = ({
         <ReviewsComponent />
       </section>
       <section className="bg-accent">
-{c_relatedBlogs &&
-        <Blogs
-          linkedArticles={c_relatedBlogs}
-          parentEntityName={name}
-          title={"Insights"}
-        />}
+        {c_relatedBlogs &&
+          <Blogs
+            linkedArticles={c_relatedBlogs}
+            parentEntityName={name}
+            title={"Insights"}
+          />}
       </section>
 
-{professionalLocations &&
-    <ThreeGridLayout
-      titleAlignment="center"
-      title={`My Locations`}
-      relatedItems={professionalLocations}
-    />}
+      {professionalLocations &&
+        <ThreeGridLayout
+          titleAlignment="center"
+          title={`My Locations`}
+          relatedItems={professionalLocations}
+        />}
       <ScrollToTop />
     </PageLayout>
   );
