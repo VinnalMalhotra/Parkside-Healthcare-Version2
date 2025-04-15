@@ -300,14 +300,18 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
               >
                 Get Directions
               </a>
-              <span className="flex gap-2 items-center">
+              <a href={`tel:${mainPhone}`} className="flex gap-2 items-center group">
                 <HiOutlinePhone className="h-4 w-4 text-secondary" />
-                <p>{format_phone(mainPhone)}</p>
+                <p className="group-hover:underline">{format_phone(mainPhone)}</p>
+              </a>
+
+
+
+              <span className="flex gap-2 items-center decoration-2 underline-offset-4 underline text-secondary font-bold">
+                <HiOutlineMail className="h-4 w-4 align-middle" />
+                <p className="leading-none">{email}</p>
               </span>
 
-              <span className="flex gap-2 items-centerdecoration-2 underline-offset-4  underline text-secondary font-bold">
-                <HiOutlineMail className="h-4 w-4" /> <p>{email}</p>
-              </span>
             </article>
             <article className="flex flex-col gap-4">
               <h2 className="text-2xl  font-bold">Hours</h2>
@@ -439,7 +443,7 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
         </section>
       )}
 
-{/* Insurance Accepted Code */}
+      {/* Insurance Accepted Code */}
       {document.c_insuranceProviders && (
         <section className="centered-container py-12">
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-8">
@@ -470,41 +474,66 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
 
 
       {/* Featured Promo Section */}
-      {c_relatedPromo && <section className="centered-container">
-        <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
-          {c_relatedPromo?.length > 0 && (
-            <Image
-              image={c_relatedPromo[0]?.c_backgroundImage}
-              className="w-full md:!w-1/2 max-w-none"
-            />
-          )}
+      {c_relatedPromo && (
+        <section className="centered-container">
+          <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
+            {c_relatedPromo?.length > 0 && (
+              <Image
+                image={c_relatedPromo[0]?.c_backgroundImage}
+                className="w-full md:!w-1/2 max-w-none"
+              />
+            )}
 
-          <article className="flex flex-col w-full md:w-1/2 gap-8">
-            <h2 className="text-2xl md:text-4xl font-bold">
-              Featured Promotion
-            </h2>
-            <p>{c_relatedPromo[0].description}</p>
-            <nav className="flex flex-col md:flex-row gap-4">
-              <button className="font-bold md:text-lg bg-secondary text-white w-full md:w-fit p-2  md:px-4 flex items-center justify-center border rounded-full">
-                Learn more
-              </button>
-            </nav>
-            <section className="flex gap-4">
-              <img
-                className="w-[119px] h-10"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Download_on_the_App_Store_RGB_blk.svg/2560px-Download_on_the_App_Store_RGB_blk.svg.png"
-                alt=""
-              />
-              <img
-                className="w-[119px] h-10"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
-                alt=""
-              />
-            </section>
-          </article>
+            <article className="flex flex-col justify-center w-full md:w-1/2 gap-16 text-center items-center">
+              <h2 className="text-2xl md:text-4xl font-bold">Featured Promotion</h2>
+
+              <p>{c_relatedPromo[0].description}</p>
+
+              <nav>
+                <button className="font-bold md:text-lg bg-secondary text-white w-full md:w-fit p-2 md:px-4 flex items-center justify-center border rounded-full">
+                  Learn more
+                </button>
+              </nav>
+
+              <section className="flex gap-4 justify-center">
+                <a
+                  href="https://apps.apple.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-[119px] h-10"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Download_on_the_App_Store_RGB_blk.svg/2560px-Download_on_the_App_Store_RGB_blk.svg.png"
+                    alt="Download on the App Store"
+                  />
+                </a>
+                <a
+                  href="https://play.google.com/store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-[119px] h-10"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
+                    alt="Get it on Google Play"
+                  />
+                </a>
+              </section>
+            </article>
+          </section>
         </section>
-      </section>
-      }
+      )}
+
+
+
+
+
+
+
+
+
+
+
 
       {/* {c_relatedEvents && (
         <ThreeGridLayout
