@@ -254,16 +254,13 @@ const Professional: Template<TemplateRenderProps> = ({
                   </div>
                 );
               })}
-
-
-
             </article>
 
             {/* Column 2 */}
             <article className="flex flex-col gap-4">
               {services && (
                 <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">Specialities</h3>
+                  <h3 className="text-xl font-bold">Services</h3>
                   <ul className="list-disc pl-4 marker:text-secondary space-y-2">
                     {services.map((item: string[], index: number) => (
                       <li key={index}>{item}</li>
