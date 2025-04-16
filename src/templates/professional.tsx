@@ -71,6 +71,7 @@ export const config: TemplateConfig = {
       "yextDisplayCoordinate",
       "specialities",
       "conditionsTreated",
+      "taxonomy_relatedSpecialties.name",
       "services",
       "educationList",
       "hours",
@@ -162,6 +163,7 @@ const Professional: Template<TemplateRenderProps> = ({
     c_relatedBlogs,
     educationList,
     c_professionalRecord,
+    taxonomy_relatedSpecialties,
     emails,
     headshot,
     yearsOfExperience,
@@ -198,7 +200,8 @@ const Professional: Template<TemplateRenderProps> = ({
   const email =
     (emails && emails.length >= 1 && emails[0]) || `contact@contact.com`;
 
-
+console.log(JSON.stringify(taxonomy_relatedSpecialties))
+console.log(JSON.stringify(educationList))
   return (
     <PageLayout _site={_site} templateData={{ __meta, document }}>
       <section className="centered-container flex flex-col md:h-[500px] md:flex-row md:justify-between gap-4 md:gap-0">
@@ -230,86 +233,86 @@ const Professional: Template<TemplateRenderProps> = ({
         />
       </section>
 
-      {(yearsOfExperience || educationList?.length || services?.length || conditionsTreated?.length || certifications?.length || languages?.length) && (
-  <section className="bg-accent">
-    <section className="centered-container">
-      <h2 className="text-2xl md:text-4xl font-bold text-center">
-        Professional Details
-      </h2>
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Column 1 */}
-        <article className="flex flex-col gap-4">
-          {yearsOfExperience && (
-            <section className="flex flex-col gap-1">
-              <h3 className="text-xl font-bold">Experience</h3>
-              <p className="text-tertiary">{yearsOfExperience} Years</p>
-            </section>
-          )}
+      {(yearsOfExperience || educationList?.length || taxonomy_relatedSpecialties?.length || conditionsTreated?.length || certifications?.length || languages?.length) && (
+        <section className="bg-accent">
+          <section className="centered-container">
+            <h2 className="text-2xl md:text-4xl font-bold text-center">
+              Professional Details
+            </h2>
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Column 1 */}
+              <article className="flex flex-col gap-4">
+                {yearsOfExperience && (
+                  <section className="flex flex-col gap-1">
+                    <h3 className="text-xl font-bold">Experience</h3>
+                    <p className="text-tertiary">{yearsOfExperience} Years</p>
+                  </section>
+                )}
 
-          {educationList?.length > 0 &&
-            educationList.map((item: any, index: number) => (
-              <div key={index} className="space-y-1">
-                <div className="text-base font-semibold">
-                  {item.type?.includes('_') ? item.type.split('_').join(' / ') : item.type}
-                </div>
-                <div className="text-sm text-gray-700">
-                  {item.institutionName} {item.yearCompleted && `– ${item.yearCompleted}`}
-                </div>
-              </div>
-            ))}
-        </article>
+                {educationList?.length > 0 &&
+                  educationList.map((item: any, index: number) => (
+                    <div key={index} className="space-y-1">
+                      <div className="text-base font-semibold">
+                        {item.type?.includes('_') ? item.type.split('_').join(' / ') : item.type}
+                      </div>
+                      <div className="text-sm text-gray-700">
+                        {item.institutionName} {item.yearCompleted && `– ${item.yearCompleted}`}
+                      </div>
+                    </div>
+                  ))}
+              </article>
 
-        {/* Column 2 */}
-        <article className="flex flex-col gap-4">
-          {services?.length > 0 && (
-            <section className="flex flex-col gap-1">
-              <h3 className="text-xl font-bold">Services</h3>
-              <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                {services.map((item: string[], index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-          {conditionsTreated?.length > 0 && (
-            <section className="flex flex-col gap-1">
-              <h3 className="text-xl font-bold">Condition Treated</h3>
-              <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                {conditionsTreated.map((item: string[], index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-        </article>
+              {/* Column 2 */}
+              <article className="flex flex-col gap-4">
+                {taxonomy_relatedSpecialties?.length > 0 && (
+                  <section className="flex flex-col gap-1">
+                    <h3 className="text-xl font-bold">Specialties</h3>
+                    <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                      {taxonomy_relatedSpecialties.map((item: any, index: number) => (
+                        <li key={index}>{item.name}</li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+                {conditionsTreated?.length > 0 && (
+                  <section className="flex flex-col gap-1">
+                    <h3 className="text-xl font-bold">Condition Treated</h3>
+                    <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                      {conditionsTreated.map((item: string[], index: number) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+              </article>
 
-        {/* Column 3 */}
-        <article className="flex flex-col gap-4">
-          {certifications?.length > 0 && (
-            <section className="flex flex-col gap-1">
-              <h3 className="text-xl font-bold">Licenses and Certifications</h3>
-              <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                {certifications.map((item: string[], index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              {/* Column 3 */}
+              <article className="flex flex-col gap-4">
+                {certifications?.length > 0 && (
+                  <section className="flex flex-col gap-1">
+                    <h3 className="text-xl font-bold">Licenses and Certifications</h3>
+                    <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                      {certifications.map((item: string[], index: number) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+                {languages?.length > 0 && (
+                  <section className="flex flex-col gap-1">
+                    <h3 className="text-xl font-bold">Languages</h3>
+                    <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                      {languages.map((item: string[], index: number) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+              </article>
             </section>
-          )}
-          {languages?.length > 0 && (
-            <section className="flex flex-col gap-1">
-              <h3 className="text-xl font-bold">Languages</h3>
-              <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                {languages.map((item: string[], index: number) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          )}
-        </article>
-      </section>
-    </section>
-  </section>
-)}
+          </section>
+        </section>
+      )}
 
 
       {/* Featured Promo Section */}
