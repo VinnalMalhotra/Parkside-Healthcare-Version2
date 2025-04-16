@@ -141,25 +141,27 @@ const ProfessionalLocation = ({ result }: CardProps<any>) => {
         </section>
 
         {pageType && (
-          <footer className="flex justify-center items-center gap-4 py-4 uppercase">
-            <div className="flex flex-row flex-wrap justify-center gap-4 w-full md:w-auto max-w-full">
-              <Cta
-                ctaType="primaryCta"
-                cta={{ label: "Book appointment", linkType: "URL", link: "" }}
-                hours={hours}
-                name={name}
-                isBookAnAppointment={true}
-                otherStyles="cta-button fixed-width"
-              />
-                {c_secondaryCTA && (
-                  <Cta
-                    cta={c_secondaryCTA}
-                    ctaType="secondaryCta"
-                    otherStyles="cta-button w-[14em]"
-                  />
-                )}
-            </div>
-          </footer>
+          <footer className="flex justify-start items-center gap-4 py-4 uppercase">
+  <div className="flex flex-row justify-start gap-4 w-full md:w-auto">
+    <Cta
+      ctaType="primaryCta"
+      cta={{ label: "Book appointment", linkType: "URL", link: "" }}
+      hours={hours}
+      name={name}
+      isBookAnAppointment={true}
+      otherStyles="cta-button capitalize"
+    />
+    {c_secondaryCTA && (
+      <Cta
+        cta={c_secondaryCTA}
+        ctaType="secondaryCta"
+        otherStyles="cta-button capitalize"
+      />
+    )}
+  </div>
+</footer>
+
+
         )}
 
       </section>
