@@ -473,58 +473,58 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
       )}
 
 
-{/* Featured Promo Section */}
-{c_relatedPromo && (
-  <section className="centered-container">
-    <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
-      {c_relatedPromo?.length > 0 && (
-        <Image
-          image={c_relatedPromo[0]?.c_backgroundImage}
-          className="w-full md:!w-1/2 max-w-none"
-        />
-      )}
+      {/* Featured Promo Section */}
+      {c_relatedPromo && (
+        <section className="centered-container">
+          <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
+            {c_relatedPromo?.length > 0 && (
+              <Image
+                image={c_relatedPromo[0]?.c_backgroundImage}
+                className="w-full md:!w-1/2 max-w-none"
+              />
+            )}
 
-<article className="flex flex-col justify-center w-full md:w-1/2 gap-8 text-left items-start">
-        <h2 className="text-2xl md:text-4xl font-bold">Featured Promotion</h2>
+            <article className="flex flex-col justify-center w-full md:w-1/2 gap-8 text-left items-start">
+              <h2 className="text-2xl md:text-4xl font-bold">Featured Promotion</h2>
 
-        <div className="flex flex-grow items-center w-full">
-          <p className="text-left">{c_relatedPromo[0].description}</p>
-        </div>
+              <div className="flex flex-grow items-center w-full">
+                <p className="text-left">{c_relatedPromo[0].description}</p>
+              </div>
 
-        <nav>
-          <button className="font-bold md:text-lg bg-secondary text-white w-full md:w-fit p-2 md:px-4 flex items-center justify-center border rounded-full">
-            Learn more
-          </button>
-        </nav>
+              <nav>
+                <button className="font-bold md:text-lg bg-secondary text-white w-full md:w-fit p-2 md:px-4 flex items-center justify-center border rounded-full">
+                  Learn more
+                </button>
+              </nav>
 
-        <section className="flex gap-4 justify-center">
-          <a
-            href="https://apps.apple.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              className="w-[119px] h-10"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Download_on_the_App_Store_RGB_blk.svg/2560px-Download_on_the_App_Store_RGB_blk.svg.png"
-              alt="Download on the App Store"
-            />
-          </a>
-          <a
-            href="https://play.google.com/store"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              className="w-[119px] h-10"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
-              alt="Get it on Google Play"
-            />
-          </a>
+              <section className="flex gap-4 justify-center">
+                <a
+                  href="https://apps.apple.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-[119px] h-10"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Download_on_the_App_Store_RGB_blk.svg/2560px-Download_on_the_App_Store_RGB_blk.svg.png"
+                    alt="Download on the App Store"
+                  />
+                </a>
+                <a
+                  href="https://play.google.com/store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-[119px] h-10"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
+                    alt="Get it on Google Play"
+                  />
+                </a>
+              </section>
+            </article>
+          </section>
         </section>
-      </article>
-    </section>
-  </section>
-)}
+      )}
 
 
 

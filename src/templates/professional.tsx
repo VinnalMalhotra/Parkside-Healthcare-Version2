@@ -229,184 +229,141 @@ const Professional: Template<TemplateRenderProps> = ({
           className="!aspect-square w-full md:!w-1/3 rounded-lg max-w-none !my-0"
         />
       </section>
-      <section className="bg-accent">
-        <section className="centered-container">
-          <h2 className="text-2xl md:text-4xl font-bold text-center">
-            Professional Details
-          </h2>
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Column 1 */}
-            <article className="flex flex-col gap-4">
-              <section className="flex flex-col gap-1">
-                <h3 className="text-xl font-bold">Experience</h3>
-                <p className="text-tertiary">{yearsOfExperience} Years</p>
-              </section>
 
-              {educationList.map((item: any, index: number) => {
-                return (
-                  <div key={index} className="space-y-1">
-                    <div className="text-base font-semibold">
-                      {item.type.includes('_') ? item.type.split('_').join(' / ') : item.type}
-                    </div>
-                    <div className="text-sm text-gray-700">
-                      {item.institutionName} {item.yearCompleted && `– ${item.yearCompleted}`}
-                    </div>
-                  </div>
-                );
-              })}
-            </article>
+      {(yearsOfExperience || educationList?.length || services?.length || conditionsTreated?.length || certifications?.length || languages?.length) && (
+  <section className="bg-accent">
+    <section className="centered-container">
+      <h2 className="text-2xl md:text-4xl font-bold text-center">
+        Professional Details
+      </h2>
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Column 1 */}
+        <article className="flex flex-col gap-4">
+          {yearsOfExperience && (
+            <section className="flex flex-col gap-1">
+              <h3 className="text-xl font-bold">Experience</h3>
+              <p className="text-tertiary">{yearsOfExperience} Years</p>
+            </section>
+          )}
 
-            {/* Column 2 */}
-            <article className="flex flex-col gap-4">
-              {services && (
-                <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">Services</h3>
-                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                    {services.map((item: string[], index: number) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-              {conditionsTreated && (
-                <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">Condition Treated</h3>
-                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                    {conditionsTreated.map((item: string[], index: number) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-            </article>
+          {educationList?.length > 0 &&
+            educationList.map((item: any, index: number) => (
+              <div key={index} className="space-y-1">
+                <div className="text-base font-semibold">
+                  {item.type?.includes('_') ? item.type.split('_').join(' / ') : item.type}
+                </div>
+                <div className="text-sm text-gray-700">
+                  {item.institutionName} {item.yearCompleted && `– ${item.yearCompleted}`}
+                </div>
+              </div>
+            ))}
+        </article>
 
-            {/* Column 3 */}
-            <article className="flex flex-col gap-4">
-              {certifications && (
-                <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">Licenses and Certifications</h3>
-                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                    {certifications.map((item: string[], index: number) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-              {languages && (
-                <section className="flex flex-col gap-1">
-                  <h3 className="text-xl font-bold">Languages</h3>
-                  <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                    {languages.map((item: string[], index: number) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-            </article>
-
-            {/* <article className="flex flex-col gap-4">
-              <h3 className="text-xl font-bold">Professional Journey</h3>
+        {/* Column 2 */}
+        <article className="flex flex-col gap-4">
+          {services?.length > 0 && (
+            <section className="flex flex-col gap-1">
+              <h3 className="text-xl font-bold">Services</h3>
               <ul className="list-disc pl-4 marker:text-secondary space-y-2">
-                {c_professionalRecord.map((item: any, index: number) => (
-                  <li className="flex" key={index}>
-                    {item.position}
-                    {item.organisation ? ` - ${item.organisation}` : ""},{" "}
-                    {item.startYear && item.startYear}
-                    {item.endYear && ` - ${item.endYear}`}
-                  </li>
+                {services.map((item: string[], index: number) => (
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
-            </article> */}
-          </section>
-          {/* <section className="hidden md:block">
-            <Map
-              bounds={[yextDisplayCoordinate]}
-              providerOptions={{
-                // maxZoom: 6,
-                scrollZoom: false,
-                boxZoom: false,
-                doubleClickZoom: false,
-                zoomControl: false,
-                showZoom: false,
-                style: "mapbox://styles/mapbox/light-v11",
-              }}
-              className="h-72 w-full border"
-              provider={MapboxMaps}
-              apiKey={import.meta.env.YEXT_PUBLIC_MAP_API_KEY}
-            >
-              <Marker coordinate={yextDisplayCoordinate} id={""}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 256 256"
-                  className="w-12 h-12 fill-accent"
-                >
-                  <g transform="translate(1.4 1.4) scale(2.81 2.81)">
-                    <path
-                      d="M 45 90 c -0.354 0 -0.681 -0.187 -0.861 -0.491 l -4.712 -7.972 C 30.222 65.976 20.704 49.884 17.64 43.734 c -2.033 -4.169 -3.062 -8.646 -3.062 -13.313 C 14.578 13.647 28.225 0 45 0 c 16.774 0 30.422 13.647 30.422 30.422 c 0 4.664 -1.028 9.141 -3.056 13.305 c -0.012 0.023 -0.023 0.045 -0.036 0.067 c -3.095 6.193 -12.581 22.231 -21.757 37.743 l -4.712 7.972 C 45.681 89.813 45.354 90 45 90 z"
-                      className="fill-secondary"
-                    />
-                    <path d="M 45 42.436 c -7.279 0 -13.2 -5.922 -13.2 -13.201 s 5.921 -13.2 13.2 -13.2 c 7.278 0 13.2 5.921 13.2 13.2 S 52.278 42.436 45 42.436 z" />
-                  </g>
-                </svg>
-              </Marker>
-            </Map>
-          </section> */}
-        </section>
+            </section>
+          )}
+          {conditionsTreated?.length > 0 && (
+            <section className="flex flex-col gap-1">
+              <h3 className="text-xl font-bold">Condition Treated</h3>
+              <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                {conditionsTreated.map((item: string[], index: number) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </article>
+
+        {/* Column 3 */}
+        <article className="flex flex-col gap-4">
+          {certifications?.length > 0 && (
+            <section className="flex flex-col gap-1">
+              <h3 className="text-xl font-bold">Licenses and Certifications</h3>
+              <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                {certifications.map((item: string[], index: number) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+          {languages?.length > 0 && (
+            <section className="flex flex-col gap-1">
+              <h3 className="text-xl font-bold">Languages</h3>
+              <ul className="list-disc pl-4 marker:text-secondary space-y-2">
+                {languages.map((item: string[], index: number) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </article>
       </section>
-
-
-{/* Featured Promo Section */}
-{c_relatedPromo && (
-  <section className="centered-container">
-    <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
-      {c_relatedPromo?.length > 0 && (
-        <Image
-          image={c_relatedPromo[0]?.c_backgroundImage}
-          className="w-full md:!w-1/2 max-w-none"
-        />
-      )}
-
-<article className="flex flex-col justify-center w-full md:w-1/2 gap-8 text-left items-start">
-        <h2 className="text-2xl md:text-4xl font-bold">Featured Promotion</h2>
-
-        <div className="flex flex-grow items-center w-full">
-          <p className="text-left">{c_relatedPromo[0].description}</p>
-        </div>
-
-        <nav>
-          <button className="font-bold md:text-lg bg-secondary text-white w-full md:w-fit p-2 md:px-4 flex items-center justify-center border rounded-full">
-            Learn more
-          </button>
-        </nav>
-
-        <section className="flex gap-4 justify-center">
-          <a
-            href="https://apps.apple.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              className="w-[119px] h-10"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Download_on_the_App_Store_RGB_blk.svg/2560px-Download_on_the_App_Store_RGB_blk.svg.png"
-              alt="Download on the App Store"
-            />
-          </a>
-          <a
-            href="https://play.google.com/store"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              className="w-[119px] h-10"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
-              alt="Get it on Google Play"
-            />
-          </a>
-        </section>
-      </article>
     </section>
   </section>
 )}
+
+
+      {/* Featured Promo Section */}
+      {c_relatedPromo && (
+        <section className="centered-container">
+          <section className="flex flex-col md:h-[400px] md:flex-row md:justify-between gap-4 md:gap-16">
+            {c_relatedPromo?.length > 0 && (
+              <Image
+                image={c_relatedPromo[0]?.c_backgroundImage}
+                className="w-full md:!w-1/2 max-w-none"
+              />
+            )}
+
+            <article className="flex flex-col justify-center w-full md:w-1/2 gap-8 text-left items-start">
+              <h2 className="text-2xl md:text-4xl font-bold">Featured Promotion</h2>
+
+              <div className="flex flex-grow items-center w-full">
+                <p className="text-left">{c_relatedPromo[0].description}</p>
+              </div>
+
+              <nav>
+                <button className="font-bold md:text-lg bg-secondary text-white w-full md:w-fit p-2 md:px-4 flex items-center justify-center border rounded-full">
+                  Learn more
+                </button>
+              </nav>
+
+              <section className="flex gap-4 justify-center">
+                <a
+                  href="https://apps.apple.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-[119px] h-10"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Download_on_the_App_Store_RGB_blk.svg/2560px-Download_on_the_App_Store_RGB_blk.svg.png"
+                    alt="Download on the App Store"
+                  />
+                </a>
+                <a
+                  href="https://play.google.com/store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-[119px] h-10"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
+                    alt="Get it on Google Play"
+                  />
+                </a>
+              </section>
+            </article>
+          </section>
+        </section>
+      )}
 
 
 
