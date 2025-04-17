@@ -112,6 +112,7 @@ const ThreeGridLayout = ({
                 )}
               </article>
               <nav className="flex flex-col md:flex-row gap-4">
+
                 {ctaCount >= 2 ? (
                   type === "location" ? (
                     <nav className="flex gap-2">
@@ -127,23 +128,13 @@ const ThreeGridLayout = ({
                           aria-label="Secondary call to action"
                         />
                       )}
-                      {item?.meta?.entityType?.id !== "atm" && (
-                        <Cta
-                          cta={{
-                            label: "View Branch",
-                            linkType: "URL",
-                            link: `/${item.slug}`,
-                          }}
-                          ctaType="secondaryCta"
-                        />
-                      )}
                     </nav>
                   ) : (
                     <nav className="flex gap-2">
                       <Cta
                         otherStyles="md:w-36"
                         cta={{
-                          label: "RSVP",
+                          label: "View Branch", // Update from RSVP to View Branch here
                           linkType: "URL",
                           link:
                             item.ticketUrl ||
@@ -154,7 +145,6 @@ const ThreeGridLayout = ({
                         ctaType="primaryCta"
                         aria-label="Primary call to action"
                       />
-
                       <Cta
                         otherStyles="md:w-36"
                         cta={{
@@ -180,6 +170,8 @@ const ThreeGridLayout = ({
                     />
                   </nav>
                 )}
+
+
               </nav>
             </article>
           </section>
@@ -214,3 +206,74 @@ const buildTime = (date: Date) => {
 
   return `${hours}:${minutes} ${period}`;
 };
+
+
+{/* Old code */ }
+// {ctaCount >= 2 ? (
+//   type === "location" ? (
+//     <nav className="flex gap-2">
+//       {item.yextDisplayCoordinate && (
+//         <Cta
+//           otherStyles="md:w-36"
+//           cta={{
+//             label: "Get Directions",
+//             link: getGoogleMapsLink(item.yextDisplayCoordinate),
+//             linkType: "URL",
+//           }}
+//           ctaType="secondaryCta"
+//           aria-label="Secondary call to action"
+//         />
+//       )}
+//       {item?.meta?.entityType?.id !== "atm" && (
+//         <Cta
+//           cta={{
+//             label: "View Branch",
+//             linkType: "URL",
+//             link: /${item.slug},
+//           }}
+//           ctaType="secondaryCta"
+//         />
+//       )}
+//     </nav>
+//   ) : (
+//     <nav className="flex gap-2">
+//       <Cta
+//         otherStyles="md:w-36"
+//         cta={{
+//           label: "RSVP",
+//           linkType: "URL",
+//           link:
+//             item.ticketUrl ||
+//             item.websiteUrl?.url ||
+//             item.landingPageUrl ||
+//             "yext.com",
+//         }}
+//         ctaType="primaryCta"
+//         aria-label="Primary call to action"
+//       />
+
+//       <Cta
+//         otherStyles="md:w-36"
+//         cta={{
+//           label: "Get Directions",
+//           link: getGoogleMapsLink(item.yextDisplayCoordinate!),
+//           linkType: "URL",
+//         }}
+//         ctaType="secondaryCta"
+//         aria-label="Secondary call to action"
+//       />
+//     </nav>
+//   )
+// ) : (
+//   <nav className="flex gap-2 items-center justify-center">
+//     <Cta
+//       cta={{
+//         label: "Learn more",
+//         linkType: "URL",
+//         link: item.slug,
+//       }}
+//       ctaType="primaryCta"
+//       otherStyles="px-8 py-2"
+//     />
+//   </nav>
+// )}

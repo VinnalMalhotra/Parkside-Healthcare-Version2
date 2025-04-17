@@ -200,8 +200,6 @@ const Professional: Template<TemplateRenderProps> = ({
   const email =
     (emails && emails.length >= 1 && emails[0]) || `contact@contact.com`;
 
-console.log(JSON.stringify(taxonomy_relatedSpecialties))
-console.log(JSON.stringify(educationList))
   return (
     <PageLayout _site={_site} templateData={{ __meta, document }}>
       <section className="centered-container flex flex-col md:h-[500px] md:flex-row md:justify-between gap-4 md:gap-0">
