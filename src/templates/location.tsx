@@ -543,11 +543,15 @@ const Location: Template<TemplateRenderProps> = ({ document }) => {
           currAddress={address.line1}
         />
       </article>
-      {professionalLocations && <ThreeGridLayout
-        titleAlignment="center" type="locations"
-        title={`My Locations`}
-        relatedItems={professionalLocations}
-      />}
+      {professionalLocations?.length > 0 && (
+        <ThreeGridLayout
+          titleAlignment="center"
+          type="locations"
+          title="My Locations"
+          relatedItems={professionalLocations.filter(item => item?.slug)}
+        />
+      )}
+
 
 
       <ScrollToTop />
